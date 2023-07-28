@@ -117,7 +117,12 @@ class ProjectServiceTest {
         assertAll(
                 () -> assertEquals(expectedListSize, service.listeProject.size()),
                 () -> assertEquals(expectedSavedId, result.getId()),
-                () -> assertEquals(result.getId(), toSave.getId())
+                () -> assertEquals(result.getId(), toSave.getId()),
+                () -> assertTrue(
+                        service.listeProject.stream()
+                                .filter(project -> project.getId() == toSave.getId()).findFirst()
+                                .map(project -> project.getName().equals(toSave.getName()))
+                                .orElse(false))
         );
     }
 
