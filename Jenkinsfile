@@ -11,7 +11,7 @@ pipeline {
         }
         stage('build_image') {
             steps {
-                dockerImage = docker.build('demotest:latest')
+                docker.build('demotest:latest')
                 echo 'image build OK'
             }
         }
