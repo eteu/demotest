@@ -26,11 +26,10 @@ public class ProjectService implements IProjectService {
 
     @Override
     public void deleteById(Long id) {
-        listeProject.add(new Project());
-        listeProject.add(new Project());
     }
 
     @Override
     public void setListeProject(ArrayList<Project> projects) {
+        listeProject = projects;
     }
 }
