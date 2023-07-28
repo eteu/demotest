@@ -102,7 +102,39 @@ class ProjectServiceTest {
         assertAll(
                 () -> assertEquals(expectedListSize, service.listeProject.size()),
                 () -> assertEquals(expectedSavedId, result.getId()),
-                () -> assertEquals(result.getName(), toSave.getName())
+                () -> assertEquals( toSave.getName(), result.getName())
+        );
+    }
+
+    @Test
+    void givenProjectWithNonExistingId_whenSaveOrUpdate_thenAddToList() {
+        Project toSave = new Project(5L,"Docker");
+        int expectedListSize = 3;
+        long expectedSavedId = 3L;
+
+        Project result = service.saveOrUpdate(toSave);
+
+        assertAll(
+                () -> assertEquals(expectedListSize, service.listeProject.size()),
+                () -> assertEquals(expectedSavedId, result.getId()),
+                () -> assertEquals(result.getId(), toSave.getId())
+        );
+    }
+
+
+    @Test
+    void givenProjectWithId0_whenSaveOrUpdate_thenAddAlreadyIncrementedList() {
+        Project toSave = new Project(0L,"Docker");
+        service.listeProject.add(new Project(3L, "Spring"));
+        int expectedListSize = 4;
+        long expectedSavedId = 4L;
+
+        Project result = service.saveOrUpdate(toSave);
+
+        assertAll(
+                () -> assertEquals(expectedListSize, service.listeProject.size()),
+                () -> assertEquals(expectedSavedId, result.getId()),
+                () -> assertEquals(result.getId(), toSave.getId())
         );
     }
 }
