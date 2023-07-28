@@ -3,13 +3,18 @@ package toto.test.demotest.services;
 import org.springframework.stereotype.Service;
 import toto.test.demotest.models.Project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ProjectService implements IProjectService {
     @Override
     public List<Project> all() {
-        return null;
+        List<Project> listeProject = new ArrayList<>();
+        listeProject.add(new Project());
+        listeProject.add(new Project());
+
+        return listeProject;
     }
 
     @Override
