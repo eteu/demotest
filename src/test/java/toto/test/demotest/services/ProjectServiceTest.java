@@ -151,4 +151,14 @@ class ProjectServiceTest {
 
         assertEquals(expectedListSize, service.listeProject.size());
     }
+
+
+    @Test
+    void givenNonExistingId_whenDeleteById_thenListIsUnchanged() {
+        long toRemove = 0L;
+        int expectedListSize = 2;
+        service.deleteById(toRemove);
+
+        assertEquals(expectedListSize, service.listeProject.size());
+    }
 }
