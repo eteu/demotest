@@ -30,7 +30,9 @@ public class ProjectService implements IProjectService {
 
     @Override
     public Project saveOrUpdate(Project projet) {
-        return null;
+        projet.setId(3L);
+        listeProject.add(projet);
+        return projet;
     }
 
     private Project getNewProject() {
