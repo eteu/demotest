@@ -8,16 +8,18 @@
  <h1>Hello Word!</h1>
  <button onclick="seeAll()">Tous les projets</button>
 
-    <h2>Ajouter Project</h2>
+    <h2>Ajouter ou modifier Project</h2>
     <form>
         <input type="number" id="projectId">
         <input type="text" id="projectName">
         <button type="button" onclick="saveOrUpdate()">Ajout d'un projet</button>
     </form>
+    <h2>Supprimer Project</h2>
     <form>
         <input type="number" id="projectId2">
-        <button type="button" onclick="delete()">Suppression d'un projet</button>
+        <button type="button" onclick="deleteById()">Suppression d'un projet</button>
     </form>
+    <h2>Consulter Project</h2>
     <form>
         <input type="number" id="projectId3">
         <button type="button" onclick="byId()">Consulter un projet</button>
@@ -38,7 +40,7 @@
             + document.getElementById("projectName").value
     }
 
-    function delete() {
+    function deleteById() {
         location = "https://metus.serveo.net/projects/delete/"
             + document.getElementById("projectId2").value
     }
