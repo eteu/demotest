@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build('demotest:latest')
-                    echo 'image build OK'
+                    echo 'image build OK '
                 }
             }
         }
