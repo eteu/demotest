@@ -16,7 +16,12 @@ class ProjectServiceTest {
 
     @BeforeEach
     public void setup() {
-        service.setListeProject(new ArrayList<>(List.of(new Project(), new Project())));
+        service.setListeProject(new ArrayList<>(
+                List.of(
+                        new Project(1L, "Jenkins"),
+                        new Project(2L, "Maven")
+                )
+        ));
     }
 
     @AfterEach
@@ -34,5 +39,14 @@ class ProjectServiceTest {
 
         // Assert
         assertEquals(expected,result);
+    }
+
+    @Test
+    public void givenExistingId_whenById_ThenReturnProject() {
+        long id = 1L;
+
+        Project result = service.byId(id);
+
+        assertNotNull(result);
     }
 }
