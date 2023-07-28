@@ -8,12 +8,9 @@ import java.util.List;
 
 @Service
 public class ProjectService implements IProjectService {
+    List<Project> listeProject = new ArrayList<>();
     @Override
     public List<Project> all() {
-        List<Project> listeProject = new ArrayList<>();
-        listeProject.add(new Project());
-        listeProject.add(new Project());
-
         return listeProject;
     }
 
@@ -29,6 +26,11 @@ public class ProjectService implements IProjectService {
 
     @Override
     public void deleteById(Long id) {
+        listeProject.add(new Project());
+        listeProject.add(new Project());
+    }
 
+    @Override
+    public void setListeProject(ArrayList<Project> projects) {
     }
 }
