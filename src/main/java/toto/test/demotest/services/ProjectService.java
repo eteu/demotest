@@ -48,11 +48,12 @@ public class ProjectService implements IProjectService {
                     foundProject.setName(projet.getName());
                     return foundProject;
                 }).orElseGet(() -> {
-                    listeProject.add(projet);
                     projet.setId(listeProject.stream()
                             .map(Project::getId)
                             .max(Comparator.comparing(Long::longValue))
+                            .map(maxValue -> maxValue + 1)
                             .orElse(1L));
+                    listeProject.add(projet);
                     return projet;
                 });
     }
