@@ -39,8 +39,7 @@ public class ProjectService implements IProjectService {
                     .filter(project -> project.getId() == finalProjet.getId())
                     .findFirst();
             if (result.isPresent()) {
-                projet = result.get();
-                projet.setName(projet.getName());
+                result.get().setName(projet.getName());
             } else {
                 projet.setId(3L);
                 listeProject.add(projet);
