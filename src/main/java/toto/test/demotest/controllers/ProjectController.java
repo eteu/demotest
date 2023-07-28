@@ -31,7 +31,7 @@ public class ProjectController {
 
     @GetMapping("saveOrUpdate/{id}/{name}")
     public Project saveOrUpdate(@PathVariable long id, @PathVariable String name) {
-        return service.saveOrUpdate(new Project(0L,name));
+        return service.saveOrUpdate(new Project(id,name));
     }
 
     @GetMapping("delete/{id}")
