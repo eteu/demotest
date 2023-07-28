@@ -30,7 +30,7 @@ public class ProjectService implements IProjectService {
 
     @Override
     public Project saveOrUpdate(Project projet) {
-        final Project finalProjet = projet;
+        /*final Project finalProjet = projet;
         Optional<Project> result = listeProject.stream()
                 .filter(project -> project.getId() == finalProjet.getId())
                 .findFirst();
@@ -40,11 +40,17 @@ public class ProjectService implements IProjectService {
             listeProject.add(projet);
             projet.setId(listeProject.size());
         }
-        return projet;
-    }
+        return projet;*/
 
-    private Project getNewProject() {
-        return new Project();
+        return listeProject.stream().filter(project -> projet.getId() == project.getId()).findFirst()
+                .map(foundProject -> {
+                    foundProject.setName(projet.getName());
+                    return foundProject;
+                }).orElseGet(() -> {
+                    listeProject.add(projet);
+                    projet.setId(listeProject.size());
+                    return projet;
+                });
     }
 
     @Override
