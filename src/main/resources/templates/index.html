@@ -12,7 +12,15 @@
     <form>
         <input type="number" id="projectId">
         <input type="text" id="projectName">
-        <button type="button" onclick="saveOrUpdate()"></button>
+        <button type="button" onclick="saveOrUpdate()">Ajout d'un projet</button>
+    </form>
+    <form>
+        <input type="number" id="projectId2">
+        <button type="button" onclick="delete()">Suppression d'un projet</button>
+    </form>
+    <form>
+        <input type="number" id="projectId3">
+        <button type="button" onclick="byId()">Consulter un projet</button>
     </form>
 </body>
 <script>
@@ -28,6 +36,16 @@
         location = "https://metus.serveo.net/projects/saveOrUpdate/"
             + document.getElementById("projectId").value + "/"
             + document.getElementById("projectName").value
+    }
+
+    function delete() {
+        location = "https://metus.serveo.net/projects/delete/"
+            + document.getElementById("projectId2").value
+    }
+
+    function byId() {
+        location = "https://metus.serveo.net/projects/"
+            + document.getElementById("projectId3").value
     }
 </script>
 </html>
