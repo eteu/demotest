@@ -31,8 +31,8 @@ public class ProjectService implements IProjectService {
     @Override
     public Project saveOrUpdate(Project projet) {
         if (projet.getId() == 0) {
-            projet.setId(3L);
             listeProject.add(projet);
+            projet.setId(listeProject.size());
         } else {
             final Project finalProjet = projet;
             Optional<Project> result = listeProject.stream()
@@ -41,8 +41,8 @@ public class ProjectService implements IProjectService {
             if (result.isPresent()) {
                 result.get().setName(projet.getName());
             } else {
-                projet.setId(3L);
                 listeProject.add(projet);
+                projet.setId(listeProject.size());
             }
         }
         return projet;
