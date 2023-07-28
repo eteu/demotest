@@ -20,7 +20,7 @@ pipeline {
         stage('execution') {
             steps {
                 script {
-                    bat ''
+                    bat "docker run --name DemoTest -d -p 8075:8080 demotest:latest nomDemoTest.jar"
                 }
             }
         }
