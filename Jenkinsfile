@@ -11,8 +11,10 @@ pipeline {
         }
         stage('build_image') {
             steps {
-                docker.build('demotest:latest')
-                echo 'image build OK'
+                script {
+                    dockerImage = docker.build('demotest:latest')
+                    echo 'image build OK'
+                }
             }
         }
     }
