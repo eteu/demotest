@@ -17,5 +17,12 @@ pipeline {
                 }
             }
         }
+        stage('execution') {
+            steps {
+                script {
+                    bat ''
+                }
+            }
+        }
     }
 }
