@@ -10,11 +10,12 @@
 	</parent>
 	<groupId>toto.test</groupId>
 	<artifactId>demotest</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${numVersion}</version>
 	<name>demotest</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+		<numVersion>0.0.1-SNAPSHOT</numVersion>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -87,6 +88,9 @@
 	</dependencies>
 
 	<build>
+		<finalName>
+			nomDemotest
+		</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
