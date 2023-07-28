@@ -142,4 +142,13 @@ class ProjectServiceTest {
                 () -> assertEquals(result.getId(), toSave.getId())
         );
     }
+
+    @Test
+    void givenExistingId_whenDeleteById_thenRemoveFromList() {
+        long toRemove = 1L;
+        int expectedListSize = 1;
+        service.deleteById(toRemove);
+
+        assertEquals(expectedListSize, service.listeProject.size());
+    }
 }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import toto.test.demotest.models.Project;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +49,10 @@ public class ProjectService implements IProjectService {
                     return foundProject;
                 }).orElseGet(() -> {
                     listeProject.add(projet);
-                    projet.setId(listeProject.size());
+                    projet.setId(listeProject.stream()
+                            .map(Project::getId)
+                            .max(Comparator.comparing(Long::longValue))
+                            .orElse(1L));
                     return projet;
                 });
     }
