@@ -16,7 +16,7 @@ public class ProjectService implements IProjectService {
 
     @Override
     public Project byId(Long id) {
-        return null;
+        return listeProject.stream().filter(project -> project.getId() == id ).findFirst().orElseGet(() -> new Project());
     }
 
     @Override
