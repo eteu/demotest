@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven1'
+    }
     stages {
-        stage('build') {
+        stage('maven build') {
             steps {
-                echo 'build step'
+                bat 'mvn clean package'
             }
         }
         stage('build_image') {
