@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/projects/")
 public class ProjectController {
-    final private ProjectService service;
+    private final ProjectService service;
 
     public ProjectController(ProjectService service) {
         this.service = service;
