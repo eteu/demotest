@@ -30,8 +30,22 @@ public class ProjectService implements IProjectService {
 
     @Override
     public Project saveOrUpdate(Project projet) {
-        projet.setId(3L);
-        listeProject.add(projet);
+        if (projet.getId() == 0) {
+            projet.setId(3L);
+            listeProject.add(projet);
+        } else {
+            final Project finalProjet = projet;
+            Optional<Project> result = listeProject.stream()
+                    .filter(project -> project.getId() == finalProjet.getId())
+                    .findFirst();
+            if (result.isPresent()) {
+                projet = result.get();
+                projet.setName(projet.getName());
+            } else {
+                projet.setId(3L);
+                listeProject.add(projet);
+            }
+        }
         return projet;
     }
 
