@@ -7,10 +7,27 @@
 <body>
  <h1>Hello Word!</h1>
  <button onclick="seeAll()">Tous les projets</button>
+
+    <h2>Ajouter Project</h2>
+    <form>
+        <input type="number" id="projectId">
+        <input type="text" id="projectName">
+        <button type="button" onclick="saveOrUpdate()"></button>
+    </form>
 </body>
 <script>
+    let project = {
+        id: "",
+        name: ""
+    }
     function seeAll() {
         location = "https://metus.serveo.net/projects/all"
+    }
+
+    function saveOrUpdate() {
+        location = "https://metus.serveo.net/projects/saveOrUpdate/"
+            + document.getElementById("projectId").value + "/"
+            + document.getElementById("projectName").value
     }
 </script>
 </html>
