@@ -30,7 +30,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void givenNothing_whenAll_ThenReturnInt() {
+    void givenNothing_whenAll_ThenReturnInt() {
         // Arrange
         int expected = 2;
 
@@ -42,7 +42,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void givenExistingId_whenById_ThenReturnProject() {
+    void givenExistingId_whenById_ThenReturnProject() {
         long id = 1L;
 
         Project result = service.byId(id);
@@ -51,7 +51,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void givenExistingId_whenById_ThenExpectName() {
+    void givenExistingId_whenById_ThenExpectName() {
         long id = 1L;
         String expectedName = "Jenkins";
         Project result = service.byId(id);
@@ -60,7 +60,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void givenAnotherExistingId_whenById_ThenExpectName() {
+    void givenAnotherExistingId_whenById_ThenExpectName() {
         long id = 2L;
         String expectedName = "Maven";
         Project result = service.byId(id);
@@ -69,7 +69,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void givenNonExistingId_whenById_ThenReturnProject() {
+    void givenNonExistingId_whenById_ThenReturnProject() {
         long id = 0L;
         Project result = service.byId(id);
 
@@ -77,7 +77,7 @@ class ProjectServiceTest {
     }
 
     @Test
-    public void givenProjectWithId0_whenSaveOrUpdate_thenAddToList() {
+    void givenProjectWithId0_whenSaveOrUpdate_thenAddToList() {
         Project toSave = new Project(0L,"Docker");
         int expectedListSize = 3;
         long expectedSavedId = 3L;
@@ -88,6 +88,21 @@ class ProjectServiceTest {
                 () -> assertEquals(expectedListSize, service.listeProject.size()),
                 () -> assertEquals(expectedSavedId, result.getId()),
                 () -> assertEquals(result.getId(), toSave.getId())
+        );
+    }
+
+    @Test
+    void givenProjectWithExistingId_whenSaveOrUpdate_thenUpdateProject() {
+        Project toSave = new Project(1L,"Jenkins with Docker");
+        int expectedListSize = 2;
+        long expectedSavedId = 1L;
+
+        Project result = service.saveOrUpdate(toSave);
+
+        assertAll(
+                () -> assertEquals(expectedListSize, service.listeProject.size()),
+                () -> assertEquals(expectedSavedId, result.getId()),
+                () -> assertEquals(result.getName(), toSave.getName())
         );
     }
 }
