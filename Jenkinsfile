@@ -20,6 +20,12 @@ pipeline {
         stage('execution') {
             steps {
                 script {
+                    try {
+                        bat "docker stop DemoTest"
+                        bat "docker rm DemoTest"
+                    } catch(Exception e) {
+                        echo "non trouvé"
+                    }
                     bat "docker run --name DemoTest -d -p 8075:8080 demotest:latest nomDemoTest.jar"
                 }
             }
