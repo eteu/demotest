@@ -75,4 +75,19 @@ class ProjectServiceTest {
 
         assertNotNull(result);
     }
+
+    @Test
+    public void givenProjectWithId0_whenSaveOrUpdate_thenAddToList() {
+        Project toSave = new Project(0L,"Docker");
+        int expectedListSize = 3;
+        long expectedSavedId = 3L;
+
+        Project result = service.saveOrUpdate(toSave);
+
+        assertAll(
+                () -> assertEquals(expectedListSize, service.listeProject.size()),
+                () -> assertEquals(expectedSavedId, result.getId()),
+                () -> assertEquals(result.getId(), toSave.getId())
+        );
+    }
 }
