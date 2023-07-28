@@ -89,7 +89,7 @@
 
 	<build>
 		<finalName>
-			nomDemotest
+			nomDemoTest
 		</finalName>
 		<plugins>
 			<plugin>
