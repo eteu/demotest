@@ -60,7 +60,11 @@ public class ProjectService implements IProjectService {
 
     @Override
     public void deleteById(Long id) {
-        listeProject.remove(byId(id));
+        for (Project projet: listeProject) {
+            if (projet.getId() == id) {
+                listeProject.remove(projet);
+            }
+        }
     }
 
     @Override
