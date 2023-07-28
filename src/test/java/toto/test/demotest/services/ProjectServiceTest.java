@@ -49,4 +49,30 @@ class ProjectServiceTest {
 
         assertNotNull(result);
     }
+
+    @Test
+    public void givenExistingId_whenById_ThenExpectName() {
+        long id = 1L;
+        String expectedName = "Jenkins";
+        Project result = service.byId(id);
+
+        assertEquals(expectedName,result.getName());
+    }
+
+    @Test
+    public void givenAnotherExistingId_whenById_ThenExpectName() {
+        long id = 2L;
+        String expectedName = "Maven";
+        Project result = service.byId(id);
+
+        assertEquals(expectedName,result.getName());
+    }
+
+    @Test
+    public void givenNonExistingId_whenById_ThenReturnProject() {
+        long id = 0L;
+        Project result = service.byId(id);
+
+        assertNotNull(result);
+    }
 }
